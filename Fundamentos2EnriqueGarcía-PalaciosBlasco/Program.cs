@@ -1,8 +1,11 @@
+using Fundamentos2EnriqueGarcía_PalaciosBlasco.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddTransient<IRepositoryComics, RepositoryComicsOracle>();
+//builder.Services.AddTransient<IRepositoryComics, RepositoryComicsSql>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +25,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Comics}/{action=Index}/{id?}");
 
 app.Run();
